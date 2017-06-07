@@ -18,12 +18,20 @@ public class NLPComponent {
     static StanfordCoreNLP pipeline;
     final static Logger logger = Logger.getLogger(NLPComponent.class);
 
+    /**
+     * Initialize StanfordCoreNLP library
+     */
     public static void init() {
         Properties props = new Properties();
         props.setProperty("annotators", "tokenize, ssplit, parse, sentiment");
         pipeline = new StanfordCoreNLP(props);
     }
 
+    /**
+     * The values used are on a 5-point scale
+     * of 0 = very negative, 1 = negative, 2 = neutral,
+     * 3 = positive, and 4 = very positive
+     */
     public static int findSentiment(String tweet) {
 
         int mainSentiment = 0;

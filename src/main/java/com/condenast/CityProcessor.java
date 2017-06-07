@@ -15,27 +15,48 @@ public class CityProcessor {
     private static final NLPComponent nlp = new NLPComponent();
     final static Logger logger = Logger.getLogger(CityProcessor.class);
 
+    /**
+     * Get Stanford NLP sentiment score based on tweet string
+     * @param tweet string of tweet text
+     * @return sentiment score (double)
+     */
     public double getSentimentScore(String tweet) {
         nlp.init();
         return (double)nlp.findSentiment(tweet);
     }
 
+    /**
+     * Get average sentiment score based on the scraped tweets
+     * @param tweets list of tweet sentiment scores
+     * @return average sentiment score for list of tweets
+     */
     public double getAverageScore(List<Double> tweets) {
         return tweets.stream().mapToDouble(a -> a).average().orElse(0);
     }
 
+    /**
+     * Processing tweets by adding their sentiment score to a list
+     * @param tweets list of Status tweets
+     */
     public void processTweets(List<Status> tweets){
         for (Status tweet : tweets) {
             String tweetText = tweet.getText();
             citySentimentScores.add(getSentimentScore(tweetText));
         }
-
     }
 
+    /**
+     * Log final average ranking for given city
+     * @param cityName city name to print in log
+     */
     public void getFinalRanking(String cityName) {
         logger.info("*Score for " + cityName + ": " + getAverageScore(citySentimentScores) + "*");
     }
 
+    /**
+     * Getter for list of sentiment scores per city
+     * @return list of sentiment scores
+     */
     public List<Double> getCitySentimentScores() {
         return citySentimentScores;
     }
