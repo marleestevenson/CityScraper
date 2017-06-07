@@ -14,8 +14,8 @@ import java.util.Map;
 
 public class Main
 {
-    private static final String CONSUMER_KEY = "NEp7ixVGJo2NPWhBXx7EJjT5e";
-    private static final String CONSUMER_SECRET = "wlqXgHB1QSys8Zpf0yheOtjahpukr59cCtjDF3fCxxiflVWJXD";
+    private static final String CONSUMER_KEY = "xxx";
+    private static final String CONSUMER_SECRET = "xxx";
     private static Query NEWYORK_NY,SEATTLE_WA,HOUSTON_TX,CHICAGO_IL,PHOENIX_AZ;
     private static HashMap<String, Query> citiesQueries;
     final static Logger logger = Logger.getLogger(Main.class);
